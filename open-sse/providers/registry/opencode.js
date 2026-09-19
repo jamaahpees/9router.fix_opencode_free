@@ -12,10 +12,14 @@ export default {
   },
   category: "free",
   noAuth: true,
+  // forceStream: upstream free tier (2026-09) rejects non-streaming bodies
+  // with 403 FreeTierError; chatCore aggregates SSE back to JSON for clients
+  // that requested a plain response (see handleForcedSSEToJson).
+  forceStream: true,
   transport: {
     baseUrl: "https://opencode.ai",
     headers: {
-      "x-opencode-client": "desktop",
+      "x-opencode-client": "cli",
     },
     noAuth: true,
   },
